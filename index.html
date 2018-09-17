@@ -5,16 +5,16 @@
 <title></title>
 <script type="text/javascript" src="jquery-1.11.1.js"></script>
 <style type="text/css">
-*{
-	margin: 0;
-	padding: 0;
-}
-div{
-	font-size: 14px;
-	line-height: 24px;
-	width: 500px;
-	margin: 0 auto;
-}
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	div {
+		font-size: 14px;
+		line-height: 24px;
+		width: 500px;
+		margin: 0 auto;
+	}
 </style>
 </head>
 
@@ -26,6 +26,21 @@ div{
 <div class="p2">字符截取文本限制字符截取文本限制字符截取文本限制字符截取文本限制字符截取文本限制字符截取文本限制字符截取文本限制字符截取文本限制</div>
 <script type="text/javascript" src="jquery.plugin_charLimit.js"></script>
 <script type="text/javascript">
+	(function ($) {
+		$.fn.charLimit = function (n) {
+			$(this).each(function () {
+				var maxwidth = n;
+				charLimitMax(this, maxwidth);
+			});
+		};
+
+		function charLimitMax(i, o) {
+			if ($(i).text().length > o) {
+				$(i).text($(i).text().substring(0, o));
+				$(i).html($(i).html() + "...");
+			};
+		};
+	})(jQuery);
 	$(".p1").charLimit(20);
 	$(".p2").charLimit(50);
 </script>
